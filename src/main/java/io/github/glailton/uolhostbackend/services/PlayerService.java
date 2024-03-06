@@ -5,10 +5,10 @@ import io.github.glailton.uolhostbackend.models.dtos.PlayerDto;
 import io.github.glailton.uolhostbackend.models.entities.Player;
 import io.github.glailton.uolhostbackend.models.enums.GroupType;
 import io.github.glailton.uolhostbackend.repositories.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -29,11 +29,23 @@ public class PlayerService {
         return repository.save(newPlayer);
     }
 
+    public Optional<Player> getPlayer(Long id) {
+        return repository.findById(id);
+    }
+
+    public Optional<Player> getPlayerByCodiname(String codiname) {
+        return repository.findByCodiname(codiname);
+    }
+
     public List<Player> getAllPlayers() {
         return repository.findAll();
     }
 
     private String getCodiname(GroupType groupType) {
         return handler.findCodiname(groupType);
+    }
+
+    public void removePlayer(Long id) {
+        repository.deleteById(id);
     }
 }
