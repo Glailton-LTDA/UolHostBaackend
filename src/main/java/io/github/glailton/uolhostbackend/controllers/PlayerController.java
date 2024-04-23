@@ -4,7 +4,6 @@ import io.github.glailton.uolhostbackend.models.dtos.PlayerDto;
 import io.github.glailton.uolhostbackend.models.entities.Player;
 import io.github.glailton.uolhostbackend.services.PlayerService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,7 +46,7 @@ public class PlayerController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity deletePlayer(@PathVariable("id") Long id) {
         service.removePlayer(id);
         return ResponseEntity.noContent().build();

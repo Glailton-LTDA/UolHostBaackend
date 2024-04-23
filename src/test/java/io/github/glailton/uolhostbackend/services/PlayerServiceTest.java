@@ -87,6 +87,7 @@ class PlayerServiceTest {
     @Test
     public void createPlayer_WithInvalidData_ThrowsException() {
         var invalidPlayer = PlayerBuilder.of(1L, "", "", "", "", null);
+
         var invalidPlayerDto = PlayerBuilder.of(
                 "",
                 "",
